@@ -5,13 +5,17 @@
 #
 Name     : leptonica
 Version  : 1.83.1
-Release  : 7
+Release  : 8
 URL      : https://github.com/DanBloomberg/leptonica/releases/download/1.83.1/leptonica-1.83.1.tar.gz
 Source0  : https://github.com/DanBloomberg/leptonica/releases/download/1.83.1/leptonica-1.83.1.tar.gz
 Summary  : An open source C library for efficient image processing and image analysis operations
 Group    : Development/Tools
 License  : BSD-2-Clause
+Requires: leptonica-bin = %{version}-%{release}
+Requires: leptonica-lib = %{version}-%{release}
+Requires: leptonica-license = %{version}-%{release}
 BuildRequires : buildreq-configure
+BuildRequires : gnuplot
 BuildRequires : pkgconfig(libjpeg)
 BuildRequires : pkgconfig(libpng)
 BuildRequires : pkgconfig(libtiff-4)
@@ -28,6 +32,44 @@ BuildRequires : pkgconfig(zlib)
 [![Build status](https://ci.appveyor.com/api/projects/status/vsk607rr6n4j2tmk?svg=true)](https://ci.appveyor.com/project/DanBloomberg/leptonica)
 ![Build status](https://github.com/DanBloomberg/leptonica/workflows/sw/badge.svg)
 
+%package bin
+Summary: bin components for the leptonica package.
+Group: Binaries
+Requires: leptonica-license = %{version}-%{release}
+
+%description bin
+bin components for the leptonica package.
+
+
+%package dev
+Summary: dev components for the leptonica package.
+Group: Development
+Requires: leptonica-lib = %{version}-%{release}
+Requires: leptonica-bin = %{version}-%{release}
+Provides: leptonica-devel = %{version}-%{release}
+Requires: leptonica = %{version}-%{release}
+
+%description dev
+dev components for the leptonica package.
+
+
+%package lib
+Summary: lib components for the leptonica package.
+Group: Libraries
+Requires: leptonica-license = %{version}-%{release}
+
+%description lib
+lib components for the leptonica package.
+
+
+%package license
+Summary: license components for the leptonica package.
+Group: Default
+
+%description license
+license components for the leptonica package.
+
+
 %prep
 %setup -q -n leptonica-1.83.1
 cd %{_builddir}/leptonica-1.83.1
@@ -40,7 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686852824
+export SOURCE_DATE_EPOCH=1686853516
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -72,7 +114,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1686852824
+export SOURCE_DATE_EPOCH=1686853516
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/leptonica
 cp %{_builddir}/leptonica-%{version}/leptonica-license.txt %{buildroot}/usr/share/package-licenses/leptonica/e0b1dceebde3eb567f610aa97227aa6a5e713810 || :
@@ -86,3 +128,79 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/V3/usr/bin/convertfilestopdf
+/V3/usr/bin/convertfilestops
+/V3/usr/bin/convertformat
+/V3/usr/bin/convertsegfilestopdf
+/V3/usr/bin/convertsegfilestops
+/V3/usr/bin/converttopdf
+/V3/usr/bin/converttops
+/V3/usr/bin/fileinfo
+/V3/usr/bin/imagetops
+/V3/usr/bin/xtractprotos
+/usr/bin/convertfilestopdf
+/usr/bin/convertfilestops
+/usr/bin/convertformat
+/usr/bin/convertsegfilestopdf
+/usr/bin/convertsegfilestops
+/usr/bin/converttopdf
+/usr/bin/converttops
+/usr/bin/fileinfo
+/usr/bin/imagetops
+/usr/bin/xtractprotos
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/leptonica/allheaders.h
+/usr/include/leptonica/alltypes.h
+/usr/include/leptonica/array.h
+/usr/include/leptonica/array_internal.h
+/usr/include/leptonica/arrayaccess.h
+/usr/include/leptonica/bbuffer.h
+/usr/include/leptonica/bilateral.h
+/usr/include/leptonica/bmf.h
+/usr/include/leptonica/bmfdata.h
+/usr/include/leptonica/bmp.h
+/usr/include/leptonica/ccbord.h
+/usr/include/leptonica/ccbord_internal.h
+/usr/include/leptonica/colorfill.h
+/usr/include/leptonica/dewarp.h
+/usr/include/leptonica/endianness.h
+/usr/include/leptonica/environ.h
+/usr/include/leptonica/gplot.h
+/usr/include/leptonica/hashmap.h
+/usr/include/leptonica/heap.h
+/usr/include/leptonica/imageio.h
+/usr/include/leptonica/jbclass.h
+/usr/include/leptonica/leptwin.h
+/usr/include/leptonica/list.h
+/usr/include/leptonica/morph.h
+/usr/include/leptonica/pix.h
+/usr/include/leptonica/pix_internal.h
+/usr/include/leptonica/ptra.h
+/usr/include/leptonica/queue.h
+/usr/include/leptonica/rbtree.h
+/usr/include/leptonica/readbarcode.h
+/usr/include/leptonica/recog.h
+/usr/include/leptonica/regutils.h
+/usr/include/leptonica/stack.h
+/usr/include/leptonica/stringcode.h
+/usr/include/leptonica/sudoku.h
+/usr/include/leptonica/watershed.h
+/usr/lib64/cmake/LeptonicaConfig-version.cmake
+/usr/lib64/cmake/LeptonicaConfig.cmake
+/usr/lib64/libleptonica.so
+/usr/lib64/pkgconfig/lept.pc
+
+%files lib
+%defattr(-,root,root,-)
+/V3/usr/lib64/libleptonica.so.6.0.0
+/usr/lib64/libleptonica.so.6
+/usr/lib64/libleptonica.so.6.0.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/leptonica/e0b1dceebde3eb567f610aa97227aa6a5e713810
