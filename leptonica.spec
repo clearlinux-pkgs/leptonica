@@ -5,7 +5,7 @@
 #
 Name     : leptonica
 Version  : 1.83.1
-Release  : 8
+Release  : 9
 URL      : https://github.com/DanBloomberg/leptonica/releases/download/1.83.1/leptonica-1.83.1.tar.gz
 Source0  : https://github.com/DanBloomberg/leptonica/releases/download/1.83.1/leptonica-1.83.1.tar.gz
 Summary  : An open source C library for efficient image processing and image analysis operations
