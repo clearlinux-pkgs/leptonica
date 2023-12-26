@@ -1,13 +1,13 @@
 Configure miss: DGifOpenFileHandle in -lgif
 Configure miss: DGifOpenFileHandle in -lgif
+Configure miss: LIBJP2K
+Configure miss: LIBJP2K
 Configure miss: gif_lib.h
 Configure miss: gif_lib.h
 Configure miss: gif_lib.h presence
 Configure miss: gif_lib.h presence
 Configure miss: gif_lib.h usability
 Configure miss: gif_lib.h usability
-Configure miss: libopenjp2 >= 2.0.0
-Configure miss: libopenjp2 >= 2.0.0
 Configure miss: openjpeg-2.0/openjpeg.h
 Configure miss: openjpeg-2.0/openjpeg.h
 Configure miss: openjpeg-2.0/openjpeg.h presence
